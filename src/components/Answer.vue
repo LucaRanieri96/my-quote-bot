@@ -7,12 +7,14 @@ export default {
   data() {
     return {
       showDescription: false,
+      showMessage: false,
     };
   },
   methods: {
     toggleDescription() {
       setTimeout(() => {
         this.showDescription = !this.showDescription;
+        this.showMessage = false;
       }, 100);
     },
   },
@@ -36,10 +38,11 @@ export default {
                 <img src="images/close.svg" alt="Close" />
               </div>
             </div>
-            <p
-              :class="['description', { 'show-description': showDescription }]"
-            >
+            <p :class="['description', { 'show-description': showDescription }]">
               {{ character.description }}
+            </p>
+            <p>
+              {{ character.message }}
             </p>
           </div>
         </div>
