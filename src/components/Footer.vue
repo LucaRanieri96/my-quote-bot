@@ -7,11 +7,14 @@ export default {
 <template>
   <footer>
     <div class="container">
-      <h1>Quote from a bot</h1>
-      <h2>Seleziona un personaggio e vedi <br />cosa ha da dirti!</h2>
+      <h3>Made by Luca Ranieri</h3>
+      <h3>From Boolean Coding Week - June 2023</h3>
     </div>
   </footer>
 </template>
 
 <style lang="scss" scoped>
+.container{
+  padding: 2rem 0;
+}
 </style>
