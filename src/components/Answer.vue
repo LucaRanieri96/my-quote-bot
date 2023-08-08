@@ -1,6 +1,21 @@
 <script>
 export default {
   name: "Answer",
+  props: {
+    character: Object,
+  },
+  data() {
+    return {
+      showDescription: false,
+    };
+  },
+  methods: {
+    toggleDescription() {
+      setTimeout(() => {
+        this.showDescription = !this.showDescription;
+      }, 100);
+    },
+  },
 };
 </script>
 
@@ -10,22 +25,22 @@ export default {
       <div class="my_modal">
         <div class="my_modal-box">
           <div class="modal-content">
-            <div class="d-flex justify-content-between">
-              <h2>Homer Simpson</h2>
-              <div class="modal-close">
-                <img src="images/close.svg" alt="" />
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>
+                {{ character.name }}
+                <span @click="toggleDescription" class="arrow-icon">
+                  <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                </span>
+              </h2>
+              <div class="modal-close" @click="$emit('close-answer')">
+                <img src="images/close.svg" alt="Close" />
               </div>
             </div>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum,
-              exercitationem omnis quasi fugit, maxime recusandae consequuntur
-              facere possimus eos natus distinctio, minus ipsum quisquam error
-              debitis aliquam ex quia nam!
-            </p>
-            <code
-              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
-              qui.</code
+            <p
+              :class="['description', { 'show-description': showDescription }]"
             >
+              {{ character.description }}
+            </p>
           </div>
         </div>
       </div>
@@ -62,7 +77,23 @@ export default {
   align-items: center;
   cursor: pointer;
 }
-.answer-hidden {
-  display: none;
+.arrow-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.answer p.show-description {
+  display: block;
+}
+
+.description {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s, max-height 0.3s;
+}
+
+.answer p.show-description {
+  opacity: 1;
+  max-height: 1000px;
 }
 </style>

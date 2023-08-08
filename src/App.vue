@@ -12,17 +12,30 @@ export default {
     Loading,
     Footer,
     Answer,
-}
-}
+},
+data() {
+    return {
+      answerCharacter: null,
+    };
+  },
+  methods: {
+    showAnswer(character) {
+      this.answerCharacter = character;
+    },
+    hideAnswer() {
+      this.answerCharacter = null;
+    },
+  },
+};
 </script>
 
 <template>
     <section class="vue-home">
         <Header/>
-        <Main/>
+        <Main @open-modal="showAnswer"/>
         <Loading/>
         <Footer/>
-        <Answer/>
+        <Answer v-if="answerCharacter" :character="answerCharacter" @close-answer="hideAnswer"/>
     </section>
 </template>
 
